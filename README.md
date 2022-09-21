@@ -1,4 +1,4 @@
-# bank statement analysis
+# Bank Statement Analysis
 Automation of Bank Statements Analysis and Create Excel Representations.
 
 - The file "analysis.py" is the main script for this program.
