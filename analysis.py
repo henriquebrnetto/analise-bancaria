@@ -13,7 +13,7 @@ import re
 def main():
     #Get all Files on Folder
     filenames = []
-    path = 'D:\\Python Projects\\bank analysis' #Use path to your folder
+    path = '\\Python Projects\\bank analysis' #Use path to your folder
     for file in listdir(path):
         if file.endswith('.csv'):
             filenames.append(file)
