@@ -13,7 +13,8 @@ import re
 def main():
     #Get all Files on Folder
     filenames = []
-    for file in listdir('D:\\Python Projects\\bank analysis'):
+    path = 'D:\\Python Projects\\bank analysis' #Use path to your folder
+    for file in listdir(path):
         if file.endswith('.csv'):
             filenames.append(file)
 
@@ -70,7 +71,7 @@ def main():
         max_val = min(pattern_list)
         gastos_df.loc[val[0],['Maior Gasto']] = max_val
 
-    #Pix DataFrame
+    #DataFrames to Excel
     pix = pd.DataFrame(columns= ['Data', 'Valor', 'Descrição'])
     seguros = pd.DataFrame(columns= ['Data', 'Valor', 'Descrição'])
     faturas = pd.DataFrame(columns= ['Data', 'Valor', 'Descrição'])
@@ -96,21 +97,21 @@ def main():
             faturas.loc[len(faturas.index)] = [df.loc[i,['Data']].values[0], df.loc[i,['Valor']].values[0], 'FATURA DE GÁS']
         if 'ENERGIA ELÉTRICA' in row.upper() or 'CONTA LUZ' in row.upper():
             if 'CPFL' in row.upper():
-                df.loc[i,['Descrição']] = 'ENERGIA ELÉTRICA SERRA NEGRA'
-                faturas.loc[len(faturas.index)] = [df.loc[i,['Data']].values[0], df.loc[i,['Valor']].values[0], 'ENERGIA ELÉTRICA SERRA NEGRA']
+                df.loc[i,['Descrição']] = 'ENERGIA ELÉTRICA S'
+                faturas.loc[len(faturas.index)] = [df.loc[i,['Data']].values[0], df.loc[i,['Valor']].values[0], 'ENERGIA ELÉTRICA S']
             elif abs(val_out.loc[i,['Valor']].values[0]) >= 80.00:
-                df.loc[i,['Descrição']] = 'ENERGIA ELÉTRICA ITAIM'
-                faturas.loc[len(faturas.index)] = [df.loc[i,['Data']].values[0], df.loc[i,['Valor']].values[0], 'ENERGIA ELÉTRICA ITAIM']
+                df.loc[i,['Descrição']] = 'ENERGIA ELÉTRICA I'
+                faturas.loc[len(faturas.index)] = [df.loc[i,['Data']].values[0], df.loc[i,['Valor']].values[0], 'ENERGIA ELÉTRICA I']
             else:
-                df.loc[i,['Descrição']] = 'ENERGIA ELÉTRICA HIGIENOPOLIS'
-                faturas.loc[len(faturas.index)] = [df.loc[i,['Data']].values[0], df.loc[i,['Valor']].values[0], 'ENERGIA ELÉTRICA HIGIENOPOLIS']
+                df.loc[i,['Descrição']] = 'ENERGIA ELÉTRICA H'
+                faturas.loc[len(faturas.index)] = [df.loc[i,['Data']].values[0], df.loc[i,['Valor']].values[0], 'ENERGIA ELÉTRICA H']
         if 'TELEFONE' in row.upper():
             if 'VIVO' in row.upper():
                 df.loc[i,['Descrição']] = 'TELEFONE VIVO'
-                faturas.loc[len(faturas.index)] = [df.loc[i,['Data']].values[0], df.loc[i,['Valor']].values[0], 'TELEFONE VIVO']
+                faturas.loc[len(faturas.index)] = [df.loc[i,['Data']].values[0], df.loc[i,['Valor']].values[0], 'TELEFONE V']
             elif 'CLARO' in row.upper():
                 df.loc[i,['Descrição']] = 'TELEFONE CLARO'
-                faturas.loc[len(faturas.index)] = [df.loc[i,['Data']].values[0], df.loc[i,['Valor']].values[0], 'TELEFONE CLARO']
+                faturas.loc[len(faturas.index)] = [df.loc[i,['Data']].values[0], df.loc[i,['Valor']].values[0], 'TELEFONE C']
             else:
                 df.loc[i,['Descrição']] = 'TELEFONE'
                 faturas.loc[len(faturas.index)] = [df.loc[i,['Data']].values[0], df.loc[i,['Valor']].values[0], 'TELEFONE']
