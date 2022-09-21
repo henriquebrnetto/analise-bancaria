@@ -7,5 +7,4 @@ Automation for Bank Statements Analysis and Create Excel Representations.
 
 Tips for improvement are always welcome :)
 
-Thank you.
 Henrique Bucci.
