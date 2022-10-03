@@ -190,8 +190,28 @@ def insert_sql(cursor, table, data, cols = None):
         db.commit()
     return    
 """
-    
-    
+
+def create_book(df_names=None, *, first_sheet = None, filename='newfile', data_only = False):
+    from openpyxl import Workbook, load_workbook
+    import os
+    if os.path.isfile(f'{filename}.xlsx') == False:
+        wb = Workbook()
+        if first_sheet == None:
+            sheet = wb.active
+            sheet.title = df_names[0]
+            del df_names[0]
+        else:
+            sheet = wb.active
+            sheet.title = first_sheet
+        for df in df_names:
+            sheet = wb.create_sheet(df)
+        wb.save(f'{filename}.xlsx')
+        ws = wb.get_sheet_names()
+    #If file already exists, it is possible to provide only 'filename' variable
+    else:
+        wb = load_workbook(f'{filename}.xlsx', data_only=data_only)
+        ws = wb.get_sheet_names()
+    return wb, ws
     
     
     
